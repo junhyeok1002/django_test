@@ -148,7 +148,20 @@
         display: flex;
         flex-direction: column;
     }
-    .modal_overlay {
+
+
+
+
+
+
+    @media screen and (max-width: 1280px) {
+        .right_body {
+            display: none;
+        }
+    }
+
+
+    .modal {
         width: 100%;
         height: 100%;
         position: absolute;
@@ -172,27 +185,57 @@
         width: 800px;
         height: 600px;
         position: relative;
-        padding: 10px;
     }
-        .modal_title{
+
+    .modal_title{
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         font-weight: bold;
         font-size: 20px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.18);
     }
 
     .modal_title_side{
+        margin: 5px;
         flex: 0 0 40px;
         text-align: center;
     }
+
     .modal_image_upload{
+        outline: 2px dashed black ;
+        outline-offset:-10px;
+        transition: all .15s ease-in-out;
+        width: 798px;
+        height: 548px;
+        text-align: center;
+        line-height: 548px;
+    }
+
+    .modal_image_upload_content{
         outline: 2px dashed black ;
         outline-offset:-10px;
         text-align: center;
         transition: all .15s ease-in-out;
-        width:780px;
+        width:500px;
         height: 548px;
+    }
+
+    .modal_image_content{
+        display: flex;
+        flex-direction: row;
+    }
+
+    .modal_content_write{
+        display: flex;
+        flex-direction: column;
+        border-left: 1px solid rgba(0, 0, 0, 0.18);;
+    }
+
+    .feed_content_textarea{
+        resize: none;
+        width: 294px;
+        border: none;
     }
 
 
@@ -363,22 +406,59 @@
         </div>
       </div>
 
-    <div id="modal_add_feed" class="modal_overlay">
+    <div id="modal_add_feed" class="modal modal_overlay">
         <div class="modal_window">
             <div class="modal_title">
                 <div class="modal_title_side"></div>
                 <div> 새 게시물 </div>
                 <div class="modal_title_side">
-                    <span id="close_modal" class="material-symbols-outlined">
+                    <span id="close_modal" class="close_modal material-symbols-outlined" style="font-size: 30px">
                         close
                     </span>
                 </div>
             </div>
             <div class="modal_image_upload">
+                <span style="text-align: center"> 사진을 여기에 끌어다 놓으세요. </span>
 
             </div>
         </div>
     </div>
+
+    <div id="modal_add_feed_content" class="modal modal_overlay_content">
+        <div class="modal_window">
+            <div class="modal_title">
+                <div class="modal_title_side"></div>
+                <div style="margin: 5px"> 새 게시물 </div>
+                <div class="modal_title_side">
+                    <span id="close_modal" class="close_modal material-symbols-outlined" style="font-size: 30px">
+                        close
+                    </span>
+                </div>
+            </div>
+            <div class="modal_image_content">
+                <div id="input_image" class="modal_image_upload_content">
+
+                </div>
+                <div class="modal_content_write">
+                    <div class="feed_name">
+                        <div class="profile_box">
+                            <img id="input_profile_image" class="profile_img" src="https://scontent-ssn1-1.xx.fbcdn.net/v/t1.6435-9/s1080x2048/165180104_277246477102900_6106347261862438192_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=730e14&_nc_ohc=1sN4d8i7rn8AX-7aKYN&_nc_ht=scontent-ssn1-1.xx&oh=5049b7cd176848e330b0f5ea95f28172&oe=615A08D1">
+                        </div>
+                        <span id="input_user_id" class="feed_name_txt"> jin.99 </span>
+                    </div>
+                    <div style="height: 440px">
+                        <textarea id="input_content" class="feed_content_textarea form-control col-sm-5" rows="10" placeholder="설명을 입력하세요..."></textarea>
+                    </div>
+                    <div style="width: 100%; text-align: center">
+                        <button id="button_write_feed" type="button" class="btn btn-primary" style="width: 268px"> 공유하기</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
 
     </div>
 
@@ -426,6 +506,8 @@
                 });
             }
         }
+
+
 
         function uploadFiles(e){
             e.stopPropagation();
